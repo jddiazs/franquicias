@@ -1,0 +1,10 @@
+server:
+  port: ${PORT:80}
+spring:
+  application:
+    name: franquicias
+  datasource:
+    url: ${URL_DB:jdbc:postgresql://localhost:5432/postgres?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=America/Bogota}
+    username: ${USER_DB:postgres}
+    password: ${PASS_DB:4D1a14niel/}
+    #driver-class-name=com: "com.mysql.cj.jdbc.Driver"
