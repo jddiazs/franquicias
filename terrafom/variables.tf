@@ -26,7 +26,7 @@ variable "settings" {
     "database" = {
       allocated_storage   = 10            // storage in gigabytes
       engine              = "postgres"       // engine type
-      engine_version      = "13.3"      // engine version
+      engine_version      = "13"      // engine version
       instance_class      = "db.t3.micro" // rds instance type
       db_name             = "nequi"    // database name
       skip_final_snapshot = true
