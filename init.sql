@@ -1,5 +1,5 @@
-CREATE DATABASE nequi;
 USE nequi;
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'root';
 CREATE TABLE nequi.franquicias (
   id BIGINT auto_increment NOT NULL,
   nombre VARCHAR(200) NOT NULL,
