@@ -1,0 +1,597 @@
+{
+	"info": {
+		"_postman_id": "131c9db8-6b17-4f26-87e8-8f5f5eb16469",
+		"name": "FRANQUICIAS -API",
+		"description": "# 🚀 Api franquicias\n\nplantilla para consumo del api de franquicias, sucursales y productos.\n\n#### **1: Definir variables**\n\nestablecer el valor para la variable `base_url` valor actual localhost\n\n#### 2: Gestión franquicias\n\n**Metodos HTTP**: POST, GET, PUT, y DELETE.  \n**uri:** {{base_url}}/api/v1/franquicia\n\n#### 2.1 Crear:\n\n**método**: POST  \n**payload-body**: JSON\n\n| **Nombre de campo** | **Tipo** | **Obligatorio** |\n| --- | --- | --- |\n| name | string | Si |\n\n**Respuesta:**_JSON  \n_\n\n```\n{\n    \"id\": 1,\n    \"name\": \"Franquisia B\"\n}\n\n ```\n\n#### 2.2 Listar:\n\n##### **método**: GET\n\n**Respuesta:**_JSON\n\n```\n[\n    {\n        \"id\": 1,\n        \"name\": \"Franquisia A\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Franquisia B\"\n    }\n]\n\n ```\n\n#### 2.3 Editar:\n\n**uri:** {{base_url}}/api/v1/franquicia/1  \n**nota**: cambiar el valor del id\n\n##### **método**: Put\n\n**payload-body**: JSON\n\n| **Nombre de campo** | **Tipo** | **Obligatorio** |\n| --- | --- | --- |\n| name | string | Si |\n\n**Respuesta:**_JSON\n\n```\n{\n    \"id\": 1,\n    \"name\": \"Franquicia A2\"\n}\n\n ```\n\n#### 2.4 Eliminar:\n\n**uri:** {{base_url}}/api/v1/franquicia/1  \n**nota**: cambiar el valor del id\n\n##### **método**: DELETE\n\n**Respuesta: EMPTY**\n\n#### 3: Gestión sucursales\n\n**Metodos HTTP**: POST, GET, PUT, y DELETE.  \n**uri:** {{base_url}}/api/v1/sucursal\n\n#### 3.1 Crear:\n\n**método**: POST  \n**payload-body**: JSON\n\n| **Nombre de campo** | **Tipo** | **Obligatorio** |\n| --- | --- | --- |\n| franchiseId | number | Si |\n| name | string | Si |\n\n**Respuesta:**_JSON  \n_\n\n```\n{\n    \"id\": 1,\n    \"franchiseId\": 1,\n    \"name\": \"Sucursal B\"\n}\n\n ```\n\n#### 3.2 Listar:\n\n##### **método**: GET\n\n**Respuesta:**_JSON\n\n```\n[\n    {\n        \"id\": 1,\n        \"franchiseId\": 1,\n        \"name\": \"Sucursal B\"\n    },\n    {\n        \"id\": 2,\n        \"franchiseId\": 1,\n        \"name\": \"Sucursal A\"\n    }\n]\n\n ```\n\n#### 3.3 Editar:\n\n**uri:** {{base_url}}/api/v1/sucursal/1  \n**nota**: cambiar el valor del id\n\n##### **método**: Put\n\n**payload-body**: JSON\n\n| **Nombre de campo** | **Tipo** | **Obligatorio** |\n| --- | --- | --- |\n| franchiseId | number | No |\n| name | string | No |\n\n**Respuesta:**_JSON\n\n```\n{\n    \"id\": 1,\n    \"franchiseId\": 2,\n    \"name\": \"Sucursal A2\"\n}\n\n ```\n\n#### 3.4 Eliminar:\n\n**uri:** {{base_url}}/api/v1/sucursal/1  \n**nota**: cambiar el valor del id\n\n##### **método**: DELETE\n\n**Respuesta: EMPTY**\n\n#### 4: Gestión Porductos\n\n**Metodos HTTP**: POST, GET, PUT, y DELETE.  \n**uri:** {{base_url}}/api/v1/producto\n\n#### 4.1 Crear:\n\n**método**: POST  \n**payload-body**: JSON\n\n| **Nombre de campo** | **Tipo** | **Obligatorio** |\n| --- | --- | --- |\n| subsidiaryId | number | Si |\n| name | string | Si |\n| stock | number | Si |\n\n**Respuesta:**_JSON  \n_\n\n```\n{\n    \"id\": 1,\n    \"subsidiaryId\": 1,\n    \"name\": \"Producto E\",\n    \"stock\": 20\n}\n\n ```\n\n#### 4.2 Listar:\n\n##### **método**: GET\n\n**Respuesta:**_JSON\n\n```\n[\n    {\n        \"id\": 1,\n        \"subsidiaryId\": 1,\n        \"name\": \"Producto E\",\n        \"stock\": 20\n    },\n    {\n        \"id\": 2,\n        \"subsidiaryId\": 2,\n        \"name\": \"Producto E\",\n        \"stock\": 5\n    },\n    {\n        \"id\": 3,\n        \"subsidiaryId\": 3,\n        \"name\": \"Producto F\",\n        \"stock\": 15\n    },\n    {\n        \"id\": 4,\n        \"subsidiaryId\": 3,\n        \"name\": \"Producto G\",\n        \"stock\": 1\n    }\n]\n\n ```\n\n#### 4.3 Editar:\n\n**uri:** {{base_url}}/api/v1/producto/1  \n**nota**: cambiar el valor del id\n\n##### **método**: Put\n\n**payload-body**: JSON\n\n| **Nombre de campo** | **Tipo** | **Obligatorio** |\n| --- | --- | --- |\n| subsidiaryId | number | No |\n| name | string | No |\n| stock | number | No |\n\n**Respuesta:**_JSON\n\n```\n{\n    \"id\": 1,\n    \"subsidiaryId\": 1,\n    \"name\": \"Prueba\",\n    \"stock\": 12\n}\n\n ```\n\n#### 4.4 Eliminar:\n\n**uri:** {{base_url}}/api/v1/producto/1  \n**nota**: cambiar el valor del id\n\n##### **método**: DELETE\n\n#### **Respuesta: EMPTY\n\n**4.5 Producto con mas stock por franquicia:\n\n**uri:** {{base_url}}/api/v1/producto/franquicia/1  \n**nota**: cambiar el valor del id\n\n##### **método**: GET\n\n**Respuesta:**_JSON\n\n```\n[\n    [\n        \"Producto E\",\n        \"Sucursal A\",\n        5\n    ],\n    [\n        \"Producto F\",\n        \"Sucursal C\",\n        15\n    ]\n]\n\n ```",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12271072",
+		"_collection_link": "https://lunar-water-884803.postman.co/workspace/e79ef28e-a970-4f45-8fe6-27086d7bf616/collection/12271072-131c9db8-6b17-4f26-87e8-8f5f5eb16469?action=share&source=collection_link&creator=12271072"
+	},
+	"item": [
+		{
+			"name": "franquicias",
+			"item": [
+				{
+					"name": "Get data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/franquicia",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"franquicia"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Post data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Franquisia B\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/franquicia",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"franquicia"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Update data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/franquicia/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"franquicia",
+								"1"
+							]
+						},
+						"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful DELETE request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/franquicia/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"franquicia",
+								"1"
+							]
+						},
+						"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "sucursales",
+			"item": [
+				{
+					"name": "Get data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/sucursal",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sucursal"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Post data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"franchiseId\": 1,\n\t\"name\": \"Sucursal C\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/sucursal",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sucursal"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Update data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"franchiseId\": 1,\n\t\"name\": \"Sucursal A2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/sucursal/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sucursal",
+								"1"
+							]
+						},
+						"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful DELETE request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/sucursal/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sucursal",
+								"1"
+							]
+						},
+						"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "productos",
+			"item": [
+				{
+					"name": "Get data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/producto",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"producto"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product Max stock",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/producto/franquicia/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"producto",
+								"franquicia",
+								"1"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Post data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"subsidiaryId\": 3,\n\t\"name\": \"Producto G\",\n    \"stock\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/producto",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"producto"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Update data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"subsidiaryId\": 1,\n\t\"name\": \"Prueba\",\n    \"stock\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/producto/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"producto",
+								"1"
+							]
+						},
+						"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful DELETE request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/producto/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"producto",
+								"1"
+							]
+						},
+						"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "localhost"
+		}
+	]
+}

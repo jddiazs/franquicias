@@ -118,7 +118,7 @@ resource "aws_route_table_association" "private" {
 
 resource "aws_security_group" "nequi_web_sg" {
   name        = "nequi_web_sg"
-  description = "Security group for tutorial web servers"
+  description = "Security group for web servers"
   vpc_id      = aws_vpc.nequi_vpc.id
 
   ingress {
@@ -153,7 +153,7 @@ resource "aws_security_group" "nequi_web_sg" {
 
 resource "aws_security_group" "nequi_db_sg" {
   name        = "nequi_db_sg"
-  description = "Security group for tutorial databases"
+  description = "Security group for  databases"
   vpc_id      = aws_vpc.nequi_vpc.id
 
   ingress {
@@ -171,7 +171,7 @@ resource "aws_security_group" "nequi_db_sg" {
 
 resource "aws_db_subnet_group" "nequi_db_subnet_group" {
   name        = "nequi_db_subnet_group"
-  description = "DB subnet group for tutorial"
+  description = "DB subnet group"
   subnet_ids  = [for subnet in aws_subnet.nequi_private_subnet : subnet.id]
 }
 
@@ -193,24 +193,24 @@ resource "aws_key_pair" "nequi_kp" {
   public_key = file("nequi_kp.pub")
 }
 
-resource "aws_instance" "tutorial_web" {
+resource "aws_instance" "instance_web" {
   count                  = var.settings.web_app.count
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = var.settings.web_app.instance_type
-  subnet_id              = aws_subnet.tutorial_public_subnet[count.index].id
+  subnet_id              = aws_subnet.nequi_public_subnet[count.index].id
   key_name               = aws_key_pair.nequi_kp.key_name
   vpc_security_group_ids = [aws_security_group.nequi_web_sg.id]
   user_data = "${file("app_config.sh")}"
   tags = {
-    Name = "tutorial_web_${count.index}"
+    Name = "instance_web_${count.index}"
   }
 }
 
-resource "aws_eip" "tutorial_web_eip" {
+resource "aws_eip" "instance_web_eip" {
   count    = var.settings.web_app.count
-  instance = aws_instance.tutorial_web[count.index].id
+  instance = aws_instance.instance_web[count.index].id
   vpc      = true
   tags = {
-    Name = "tutorial_web_eip_${count.index}"
+    Name = "instance_web_eip_${count.index}"
   }
 }
