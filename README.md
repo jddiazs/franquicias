@@ -13,7 +13,7 @@ API para la gestión de franquicias, sucursales  y productos.
 ### Paso a Paso
 - Compilar el proyecto con el siguiente comando `sudo ./gradlew bootJar`
 - Construir e inicializar dockers con el siguiente comando  `sudo docker compose up`
-- (usar postman)[postman/README.md]
+- [usar postman](postman/README.md)
 
 ## Terraform
 ###  Requisitos previos

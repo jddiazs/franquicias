@@ -1,6 +1,7 @@
 # 🚀 Api franquicias
 
 plantilla para consumo del api de franquicias, sucursales y productos.
+**Nota**: los métodos delete aplican eliminación en cascada
 
 #### **1: Definir variables**
 
@@ -8,7 +9,7 @@ establecer el valor para la variable `base_url` valor actual localhost
 
 #### 2: Gestión franquicias
 
-**Metodos HTTP**: POST, GET, PUT, y DELETE.  
+**Métodos HTTP**: POST, GET, PUT, y DELETE.  
 **uri:** {{base_url}}/api/v1/franquicia
 
 #### 2.1 Crear:
